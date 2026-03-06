@@ -118,7 +118,7 @@
     <div id="hud">
         <div class="glass-panel header">
             <h1>K-TRUCK TOUGE RACING</h1>
-            <p>CHORO-Q STYLE PROCEDURAL DRIVE</p>
+            <p>CHORO-Q STYLE PROCEDURAL DRIVE // PRESS [H] TO TOGGLE HUD</p>
             <div class="status-indicator">SYSTEMS NOMINAL</div>
         </div>
 
@@ -224,6 +224,9 @@
         // --- パーティクル（火花エフェクト用） ---
         const particles = [];
         const particleCount = 60;
+
+        const uiHud = document.getElementById('hud');
+        let isHudVisible = true;
 
         const uiSpeedValue = document.getElementById('speed-value');
         const uiSpeedRing = document.getElementById('speed-ring');
@@ -1059,6 +1062,10 @@
             });
             window.addEventListener('keyup', e => {
                 if (e.key === 'p' || e.key === 'P') btnAutopilot.click(); // Pキーで自動運転切り替え
+                if (e.key === 'h' || e.key === 'H') { // HキーでHUD切り替え
+                    isHudVisible = !isHudVisible;
+                    uiHud.style.display = isHudVisible ? 'flex' : 'none';
+                }
                 if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') updateUIState('accel', false);
                 if (e.key === 's' || e.key === 'S' || e.key === 'ArrowDown') updateUIState('brake', false);
                 if (e.key === 'a' || e.key === 'A' || e.key === 'ArrowLeft') updateUIState('left', false);
